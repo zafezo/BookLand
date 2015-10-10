@@ -21,5 +21,6 @@ class UserSingupTest < ActionDispatch::IntegrationTest
                             password_confimation:"foobar"}                             
     end
     assert_template 'users/show'
+    assert is_logged_in?
   end
 end
