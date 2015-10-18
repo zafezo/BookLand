@@ -37,7 +37,20 @@ module SessionsHelper
 	  end
 	end
 
+	def correct_user?(user)
+		current_user == user
+	end
+
 	def logged_in?
 		!current_user.nil?
+	end
+
+	def store_location
+		session[:forwading_url] = request.url if request.get?
+	end
+
+	def redirect_back_or(default)
+		redirect_to(session[:forwading_url] || default)
+		session.delete(:forwading_url)		
 	end
 end
